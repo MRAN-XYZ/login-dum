@@ -1,17 +1,3 @@
-// Toggle between login and signup forms
-function toggleForms() {
-    const loginForm = document.getElementById('login-form');
-    const signupForm = document.getElementById('signup-form');
-
-    if (loginForm.style.display === 'none') {
-        loginForm.style.display = 'block';
-        signupForm.style.display = 'none';
-    } else {
-        loginForm.style.display = 'none';
-        signupForm.style.display = 'block';
-    }
-}
-
 // Sign-up function
 function signup() {
     const username = document.getElementById('signup-username').value;
@@ -28,8 +14,8 @@ function signup() {
         return; // Stop the function if validation fails
     }
 
-    // Send the signup data to the server
-    fetch('/signup', {
+    // Send the signup data to the external server
+    fetch('https://dramatic-charissa-mran-f1d80e9a.koyeb.app/signup', { // Change this URL if necessary
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -82,8 +68,8 @@ function login() {
         return; // Stop the function if validation fails
     }
 
-    // Send the login data to the server
-    fetch('/login', {
+    // Send the login data to the external server
+    fetch('https://dramatic-charissa-mran-f1d80e9a.koyeb.app/login', { // Change this URL if necessary
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
