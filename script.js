@@ -14,7 +14,7 @@ function toggleForms() {
 }
 
 // Sign-up function
-function signup() {
+async function signup() {
     const username = document.getElementById('signup-username').value;
     const email = document.getElementById('signup-email').value;
     const password = document.getElementById('signup-password').value;
@@ -29,12 +29,29 @@ function signup() {
         return;
     }
 
-    // Simulating a successful signup
-    pglogs.textContent = 'Signup successful!'; // Show success message for testing
+    try {
+        // Send request to sign up
+        const response = await fetch('http://localhost:3030/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, email, password }),
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        pglogs.textContent = 'Signup successful!'; // Show success message
+    } catch (error) {
+        pglogs.textContent = error.message; // Show error message
+    }
 }
 
 // Login function
-function login() {
+async function login() {
     const username = document.getElementById('login-username').value;
     const password = document.getElementById('login-password').value;
     const pglogs = document.getElementById('logs');
@@ -48,6 +65,23 @@ function login() {
         return;
     }
 
-    // Simulating a successful login
-    pglogs.textContent = 'Login successful!'; // Show success message for testing
-}
+    try {
+        // Send request to login
+        const response = await fetch('http://localhost:3030/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message);
+        }
+
+        pglogs.textContent = 'Login successful!'; // Show success message
+    } catch (error) {
+        pglogs.textContent = error.message; // Show error message
+    }
+            }
