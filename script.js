@@ -85,7 +85,7 @@ async function login() {
             pglogs.textContent = result.message; // Show success message
             // Redirect to logout/logout.html after a short delay
             setTimeout(() => {
-                window.location.href = './logout/logout.html'; // Use relative path to the logout directory
+                window.location.href = '/logout/logout.html'; // Use relative path to the logout directory
             }, 1000); // Redirect after 1 second for the user to see the success message
         } else {
             pglogs.textContent = result.message; // Show error message
