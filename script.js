@@ -30,23 +30,26 @@ async function signup() {
     }
 
     try {
-        // Send request to sign up
-        const response = await fetch('http://localhost:3030/signup', {
+        // Send request to signup
+        const response = await fetch('https://dramatic-charissa-mran-f1d80e9a.koyeb.app/signup', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, email, password }),
+            body: JSON.stringify({ username, email, password })
         });
 
-        const data = await response.json();
-        if (!response.ok) {
-            throw new Error(data.message);
-        }
+        const result = await response.json();
 
-        pglogs.textContent = 'Signup successful!'; // Show success message
+        // Handle response
+        if (response.ok) {
+            pglogs.textContent = result.message; // Show success message
+        } else {
+            pglogs.textContent = result.message; // Show error message
+        }
     } catch (error) {
-        pglogs.textContent = error.message; // Show error message
+        console.error('Error during signup:', error);
+        pglogs.textContent = 'An error occurred during signup.';
     }
 }
 
@@ -67,21 +70,24 @@ async function login() {
 
     try {
         // Send request to login
-        const response = await fetch('http://localhost:3030/login', {
+        const response = await fetch('https://dramatic-charissa-mran-f1d80e9a.koyeb.app/login', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ username, password })
         });
 
-        const data = await response.json();
-        if (!response.ok) {
-            throw new Error(data.message);
-        }
+        const result = await response.json();
 
-        pglogs.textContent = 'Login successful!'; // Show success message
+        // Handle response
+        if (response.ok) {
+            pglogs.textContent = result.message; // Show success message
+        } else {
+            pglogs.textContent = result.message; // Show error message
+        }
     } catch (error) {
-        pglogs.textContent = error.message; // Show error message
+        console.error('Error during login:', error);
+        pglogs.textContent = 'An error occurred during login.';
     }
-            }
+}
